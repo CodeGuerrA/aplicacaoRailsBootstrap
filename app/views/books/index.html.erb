@@ -1,0 +1,38 @@
+<h1 class="my-4 text-center">Lista de Livros</h1>
+
+<div class="row mb-4">
+  <div class="col-md-6 offset-md-3">
+    <%= form_with(url: books_path, method: :get, local: true, class: 'd-flex') do |form| %>
+      <%= form.text_field :search, placeholder: "Buscar livros...", class: 'form-control me-2' %>
+      <%= form.submit "Buscar", class: 'btn btn-outline-primary' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 books-container">
+  <% @books.each do |book| %>
+    <div class="col">
+      <div class="card h-100 book-card">
+        <div class="card-body">
+          <h3 class="card-title"><%= book.title %></h3>
+          <p class="card-text"><strong>Autor:</strong> <%= book.actor %></p>
+          <p class="card-text"><strong>Editora:</strong> <%= book.editora %></p>
+          <p class="card-text"><strong>Ano:</strong> <%= book.ano_public %></p>
+        </div>
+        <div class="card-footer book-actions">
+          <div class="d-flex justify-content-between">
+            <%= link_to 'Ver', book, class: 'btn btn-sm btn-outline-primary' %>
+            <%= link_to 'Editar', edit_book_path(book), class: 'btn btn-sm btn-outline-secondary' %>
+            <%= form_with(model: book, method: :delete, local: true, class: 'd-inline') do |form| %>
+              <%= form.submit 'Excluir', class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Tem certeza?' } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-4 text-center">
+  <%= link_to 'Adicionar Novo Livro', new_book_path, class: 'btn btn-primary' %>
+</div>
