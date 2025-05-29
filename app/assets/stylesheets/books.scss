@@ -1,6 +1,10 @@
 /* app/assets/stylesheets/books.scss */
-.books-container{
+.books-container {
   margin-top: 1rem;
-  width: 80%;
+  width: 50%;
   display: flexbox;
+}
+
+.show-body {
+  background-color: black;
 }

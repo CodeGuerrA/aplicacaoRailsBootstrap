@@ -1,0 +1,22 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card h-100 show-card">
+      <div class="show-body">
+        <h2 class="card-title"><%= @book.title %></h2>
+        <p class="card-text"><strong>Autor:</strong> <%= @book.actor %></p>
+        <p class="card-text"><strong>Editora:</strong> <%= @book.editora %></p>
+        <p class="card-text"><strong>Ano de Publicação:</strong> <%= @book.ano_public %></p>
+        </p>
+      </div>
+      <div class="card-footer book-actions">
+        <div class="d-flex justify-content-between">
+          <%= link_to 'Editar', edit_book_path(@book), class: 'btn btn-sm btn-outline-secondary' %>
+          <%= link_to 'Voltar', books_path, class: 'btn btn-sm btn-outline-primary' %>
+          <%= form_with(model: @book, method: :delete, local: true, class: 'd-inline') do |form| %>
+          <% end %>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

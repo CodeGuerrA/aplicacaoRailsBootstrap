@@ -1,5 +1,4 @@
 <h1 class="my-4 text-center">Lista de Livros</h1>
-
 <div class="row mb-4">
   <div class="col-md-6 offset-md-3">
     <%= form_with(url: books_path, method: :get, local: true, class: 'd-flex') do |form| %>
@@ -32,7 +31,14 @@
     </div>
   <% end %>
 </div>
-
+<% if user_signed_in? %>
+  <div class="position-absolute top-0 end-0 p-3 d-flex align-items-center gap-2">
+  <span class="text-white d-none d-md-inline">Olá, <%= current_user.email %></span>
+  <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+</div>
+    
+  </div>
+<% end %>
 <div class="mt-4 text-center">
   <%= link_to 'Adicionar Novo Livro', new_book_path, class: 'btn btn-primary' %>
 </div>

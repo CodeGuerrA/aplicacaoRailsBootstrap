@@ -13,27 +13,26 @@
  *= require_tree .
  *= require_self
  */
- /* Customizações do Bootstrap */
- @import "books";
- body {
-   background-color: #f0f8ff;
-   /* cor de fundo diferente */
- }
+/* Customizações do Bootstrap */
+@import "books";
+body {
+  background-color: #f0f8ff;
+  /* cor de fundo diferente */
+}
 
- h1 {
-   font-family: 'Arial Black', sans-serif;
-   color: #2c3e50;
- }
+h1 {
+  font-family: "Arial Black", sans-serif;
+  color: #2c3e50;
+}
 
- .btn-success {
-   background-color: #28a745;
-   /* Verde padrão */
-   border-radius: 12px;
-   /* Borda arredondada */
-   font-weight: bold;
- }
+.btn-success {
+  background-color: #28a745;
+  /* Verde padrão */
+  border-radius: 12px;
+  /* Borda arredondada */
+  font-weight: bold;
+}
 
- .navbar {
-   background-color: #004085 !important;
-   /* Azul escuro */
- }
+.navbar {
+  background-color: #004085 !important;
+}

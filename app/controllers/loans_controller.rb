@@ -1,17 +1,16 @@
 class LoansController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book
-  before_action :set_loan, only: [:edit, :update, :show, :destroy]  # Corrigido para singular
-
+   before_action :set_loan, only: [:edit, :update, :show, :destroy]  # Corrigido para singular
   # Evita N+1
   def index
     @loans = current_user.loans.includes(:book) 
   end
-
+  #no index show usar datatable pensando na questão de muitos livros
   #Metodo de criar o emprestimo aonde ira fazer duas verificações
   #Primeiro se o livro ja esta emprestado
   #segunda se ele ja possui 3 livros emprestados
-  end
+  
   def create 
     if livro_emprestado?(@book)
       flash[:alert] = "Esse livro já foi emprestado!"
