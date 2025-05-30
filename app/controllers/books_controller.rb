@@ -1,47 +1,46 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy] # Adicionado para DRY
 
+  #metodo de search barra de busca
   def index
-    @books = if params[:search]
-               Book.where("title LIKE ? OR actor LIKE ?", 
-                         "%#{params[:search]}%", 
-                         "%#{params[:search]}%")
-             else
-               Book.all
-             end
+    @books = if params[:search].present?
+        Book.where("title LIKE ? OR actor LIKE ?",
+                   "%#{params[:search]}%",
+                   "%#{params[:search]}%")
+      else
+        Book.all
+      end
   end
 
   def show
-   
   end
 
-  def new 
+  def new
     @book = Book.new
   end
 
   def create
-    @book = Book.new(book_params) 
-    
-    if @book.save 
+    @book = Book.new(book_params)
+
+    if @book.save
       flash[:notice] = "Livro criado com sucesso!"
-      redirect_to root_path # Redireciona para a página do livro
+      redirect_to new_book_path(@book)
     else
-      flash.now[:alert] = "Erro ao criar livro!" # Adicionado feedback de erro
-      render 'new', status: :unprocessable_entity
+      flash.now[:alert] = "Erro ao criar livro!"
+      render "new", status: :unprocessable_entity
     end
   end
 
   def edit
-    
   end
 
   def update
     if @book.update(book_params)
       flash[:notice] = "Livro atualizado com sucesso!"
-      redirect_to @book
+      redirect_to new_book_path(@book)
     else
       flash.now[:alert] = "Erro ao atualizar livro!"
-      render 'edit', status: :unprocessable_entity
+      render "edit", status: :unprocessable_entity
     end
   end
 
@@ -51,7 +50,7 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-  private 
+  private
 
   def set_book
     @book = Book.find(params[:id])

@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   # Livros (após login)
   resources :books do
-    resources :loans, only: [:new, :create]
+    resources :loans
   end
 end

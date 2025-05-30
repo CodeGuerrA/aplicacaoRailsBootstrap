@@ -1,3 +1,16 @@
+<!-- Exibe mensagens flash de alerta e sucesso -->
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <%= form_with(model: @book, local: true) do |form| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">
@@ -32,5 +45,12 @@
 
   <div class="actions">
     <%= form.submit @book.persisted? ? "Atualizar Livro" : "Criar Livro" %>
+  </div>
+<% end %>
+
+<% if user_signed_in? %>
+  <div class="position-absolute top-0 end-0 p-3 d-flex align-items-center gap-2">
+    <span class="text-white d-none d-md-inline">Olá, <%= current_user.email %></span>
+    <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger btn-sm" %>
   </div>
 <% end %>

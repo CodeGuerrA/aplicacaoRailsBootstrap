@@ -1,23 +1,27 @@
 class LoansController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book
-   before_action :set_loan, only: [:edit, :update, :show, :destroy]  # Corrigido para singular
+  before_action :set_book, only: [:new, :create]
+  before_action :set_loan, only: [:edit, :update, :show, :destroy]
   # Evita N+1
   def index
-    @loans = current_user.loans.includes(:book) 
+    @loans = current_user.loans.includes(:book)
   end
+
   #no index show usar datatable pensando na questão de muitos livros
   #Metodo de criar o emprestimo aonde ira fazer duas verificações
   #Primeiro se o livro ja esta emprestado
   #segunda se ele ja possui 3 livros emprestados
-  
-  def create 
-    if livro_emprestado?(@book)
+  def new
+    @loan = Loan.new
+  end
+
+  def create
+    if Loan.livro_emprestado?(@book)
       flash[:alert] = "Esse livro já foi emprestado!"
-      redirect_to new_user_book_loan_path(current_user, @book)
-    elsif emprestado_3?(current_user)
+      redirect_to new_book_loan_path(@book)
+    elsif Loan.emprestado_3?(current_user)
       flash[:alert] = "Você já possui três livros emprestados!"
-      redirect_to new_user_book_loan_path(current_user, @book)
+      redirect_to new_book_loan_path(@book)
     else
       @loan = Loan.new(loan_params)
       @loan.user = current_user
@@ -25,7 +29,7 @@ class LoansController < ApplicationController
       @loan.status = :emprestado
 
       if @loan.save
-        redirect_to user_loans_path(current_user), notice: "Empréstimo realizado!"
+        redirect_to new_book_loan_path(@book), notice: "Empréstimo realizado!"
       else
         render :new
       end
@@ -47,14 +51,14 @@ class LoansController < ApplicationController
     redirect_to user_loans_path(current_user)
   end
 
-  private 
+  private
 
   def set_loan
     @loan = Loan.find(params[:id])
   end
 
-  def set_book 
-    @book = Book.find(params[:book_id]) 
+  def set_book
+    @book = Book.find(params[:book_id])
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "Livro não encontrado."
     redirect_to root_path
