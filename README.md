@@ -1,24 +1,26 @@
-# README
+# 📚 Aplicação Rails com Bootstrap
+Primeiro projeto com Rails simples
+Este é um sistema web desenvolvido com **Ruby on Rails** e integrado ao **Bootstrap**, com foco no gerenciamento de livros e empréstimos. A aplicação permite o cadastro de usuários, controle de livros disponíveis e registro de empréstimos realizados.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 🚀 Funcionalidades
 
-Things you may want to cover:
+- Cadastro e autenticação de usuários
+- Adição, edição e exclusão de livros
+- Registro de empréstimos e devoluções
+- Interface moderna com Bootstrap
+- Organização por MVC padrão do Rails
 
-* Ruby version
+## 🛠️ Tecnologias Utilizadas
 
-* System dependencies
+- [Ruby on Rails](https://rubyonrails.org/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- HTML5, SCSS
+- SQlite
+Quando clonar o repositorio no terminal bash
+bundle install #instalar as gems
+rails db:create
+rails db:migrate #fazer a criação das migrates
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Apos isso rode o server 
+rails server
+Acesse: http://localhost:3000
