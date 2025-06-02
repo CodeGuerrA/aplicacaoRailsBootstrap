@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users  # Gerencia login/registro
+  devise_for :users, controllers: {
+                       registrations: "users/registrations",
+                     }  # Gerencia login/registro
   root "books#index"  # Página inicial (opcional)
 
   # Livros (após login)

@@ -60,6 +60,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :actor, :editora, :ano_public) # Corrigido para singular (:book)
+    params.require(:book).permit(:title, :actor, :editora, :ano_public)
   end
 end

@@ -31,8 +31,12 @@
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div class="field">
-    <%= form.label :return_date, "Data prevista de devolução" %><br>
-    <%= form.date_field :return_date %>
+    <%= form.label :data_emprestimo, "Data de emprestimo" %><br>
+    <%= form.date_field :data_emprestimo %>
+  </div>
+  <div class="field">
+    <%= form.label :data_devolucao_prevista, "Data prevista de devolução" %><br>
+<%= form.date_field :data_devolucao_prevista %>
   </div>
 
   <div class="actions">
