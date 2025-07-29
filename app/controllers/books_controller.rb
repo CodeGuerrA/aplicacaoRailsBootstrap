@@ -20,6 +20,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    authorize @book
     @book = Book.new(book_params)
 
     if @book.save
@@ -35,6 +36,7 @@ class BooksController < ApplicationController
   end
 
   def update
+    authorize @book
     if @book.update(book_params)
       flash[:notice] = "Livro atualizado com sucesso!"
       redirect_to new_book_path(@book)
@@ -45,6 +47,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    authorize @book
     @book.destroy
     flash[:notice] = "Livro removido com sucesso!"
     redirect_to books_path

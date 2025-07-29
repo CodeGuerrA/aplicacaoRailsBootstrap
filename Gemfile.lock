@@ -95,6 +95,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (3.1.8)
+    dotenv-rails (3.1.8)
+      dotenv (= 3.1.8)
+      railties (>= 6.1)
     erb (5.0.1)
     erubi (1.13.1)
     ffi (1.17.2-aarch64-linux-gnu)
@@ -175,6 +179,8 @@ GEM
     public_suffix (6.0.2)
     puma (5.6.9)
       nio4r (~> 2.0)
+    pundit (2.5.0)
+      activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (2.2.16)
     rack-test (2.2.0)
@@ -298,9 +304,11 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  dotenv-rails
   importmap-rails
   jbuilder
   puma (~> 5.0)
+  pundit
   rails (~> 7.0.8, >= 7.0.8.7)
   rails_live_reload (~> 0.5.0)
   sassc-rails (~> 2.1)

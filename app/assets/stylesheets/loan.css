@@ -1,0 +1,13 @@
+/* app/assets/stylesheets/loan.scss */
+.card {
+  max-width: 500px; /* Altere esse valor como preferir: 400px, 600px, etc */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 20px; /* Espaço interno */
+  background-color: #1a1a1a; /* Cor de fundo opcional */
+  border-radius: 8px; /* Cantos arredondados */
+}
+.alert {
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 8px;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_06_02_104500) do
+ActiveRecord::Schema[7.0].define(version: 2025_07_29_035232) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "actor"
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_06_02_104500) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "data_devolucao_real"
     t.index ["book_id"], name: "index_loans_on_book_id"
     t.index ["user_id"], name: "index_loans_on_user_id"
   end
@@ -40,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_06_02_104500) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

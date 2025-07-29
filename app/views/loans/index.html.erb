@@ -1,5 +1,18 @@
 <% @loans.each do |loan| %>
-  <p>
-    <strong>Livro:</strong> <%= loan.book.title %><br>
-  </p>
+  <div class="mb-3 p-3 border rounded">
+    <p>
+      <strong>Livro:</strong> <%= loan.book.title %><br>
+      <strong>Status:</strong> <%= loan.status %><br>
+
+      <% if loan.emprestado? %>
+        <%= button_to "Devolver", book_loan_path(loan.book, loan), method: :patch,
+              params: { loan: { status: :devolvido } },
+              data: { confirm: "Tem certeza que deseja devolver este livro?" },
+              class: "btn btn-sm btn-success" %>
+      <% else %>
+        <span class="text-muted">Devolvido em <%= loan.data_devolucao_real.strftime("%d/%m/%Y") %></span>
+      <% end %>
+
+    </p>
+  </div>
 <% end %>

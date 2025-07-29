@@ -39,7 +39,7 @@ class LoansController < ApplicationController
   def update
     if @loan.update(status: :devolvido, data_devolucao_real: Date.today)
       flash[:notice] = "Livro devolvido com sucesso!"
-      redirect_to user_loans_path(current_user)
+      redirect_to book_loans_path(@loan.book)
     else
       render :edit
     end
