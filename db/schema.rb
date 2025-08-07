@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_07_29_035232) do
+ActiveRecord::Schema[7.0].define(version: 2025_08_07_003709) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "actor"
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_07_29_035232) do
     t.integer "ano_public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_books_on_slug", unique: true
   end
 
   create_table "loans", force: :cascade do |t|

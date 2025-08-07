@@ -38,7 +38,7 @@
           <td><%= book.editora %></td>
           <td><%= book.ano_public %></td>
           <td class="d-flex gap-1">
-            <%= link_to "Empréstimo", new_book_loan_path(book), class: "btn btn-sm btn-primary" %>
+<%= link_to "Empréstimo", new_book_loan_path(book), class: "btn btn-sm btn-primary" %>
 <%#para poder aparecer certos buttons para determinados user definimos que o botão de editar ira aparecer para somente admin%>
             <% if policy(book).update? %>
               <%= link_to "Editar", edit_book_path(book), class: "btn btn-sm btn-secondary" %>

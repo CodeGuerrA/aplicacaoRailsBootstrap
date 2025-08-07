@@ -2,6 +2,7 @@ class LoansController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book, only: [:new, :create]
   before_action :set_loan, only: [:edit, :update, :show, :destroy]
+  
   # Evita N+1
   def index
     @loans = current_user.loans.includes(:book)
@@ -58,12 +59,11 @@ class LoansController < ApplicationController
   end
 
   def set_book
-    @book = Book.find(params[:book_id])
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "Livro não encontrado."
-    redirect_to root_path
-  end
-
+  @book = Book.find_by!(slug: params[:book_id])
+rescue ActiveRecord::RecordNotFound
+  flash[:alert] = "Livro não encontrado."
+  redirect_to root_path
+end
   def loan_params
     params.require(:loan).permit(:data_emprestimo, :data_devolucao_prevista)
   end

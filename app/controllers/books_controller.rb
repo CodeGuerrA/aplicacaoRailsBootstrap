@@ -1,28 +1,24 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy] # Adicionado para DRY
+  before_action :set_book, only: [:show, :edit, :update, :destroy] # DRY
 
-  #metodo de search barra de busca
+  # método de busca
   def index
     @books = if params[:search].present?
-        Book.where("title LIKE ? OR actor LIKE ?",
-                   "%#{params[:search]}%",
-                   "%#{params[:search]}%")
-      else
-        Book.all
-      end
+      Book.where("title LIKE ? OR actor LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      Book.all
+    end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @book = Book.new
   end
 
   def create
-    authorize @book
     @book = Book.new(book_params)
-
+    authorize @book
     if @book.save
       flash[:notice] = "Livro criado com sucesso!"
       redirect_to new_book_path(@book)
@@ -32,8 +28,7 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     authorize @book
@@ -56,7 +51,7 @@ class BooksController < ApplicationController
   private
 
   def set_book
-    @book = Book.find(params[:id])
+    @book = Book.find_by!(slug: params[:id])
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "Livro não encontrado"
     redirect_to books_path
