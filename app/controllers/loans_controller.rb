@@ -1,5 +1,5 @@
 class LoansController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!#garantir que apenas usuários autenticados possam acessá-las.
   before_action :set_book, only: [:new, :create]
   before_action :set_loan, only: [:edit, :update, :show, :destroy]
   
